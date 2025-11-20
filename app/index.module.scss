@@ -1,0 +1,24 @@
+.page {
+  background-color: red;
+}
+
+.header {
+  display: flex;
+  gap: 24px;
+  padding: 12px calc(50% - var(--content-width) / 2);
+
+  line-height: 36px;
+
+  &__logo {
+    font-size: 24px;
+  }
+
+  &__btn {
+    font-size: 14px;
+    color: var(--color-text-primary);
+  }
+}
+
+.content {
+  padding: 0 calc(50% - var(--content-width) / 2);
+}
