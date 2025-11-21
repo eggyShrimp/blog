@@ -1,9 +1,13 @@
+import avatarGraph from "@/app/opengraph-image.jpg";
+
 const metadata = {
   author: {
-    name: "EggyShrimp",
+    name: "Eggy Shrimp",
     email: "eggy.shrimp@gmail.com",
     url: "https://eggyshrimp.github.io",
-    twitter: "https://x.com/MoShian90s"
+    twitter: "https://x.com/MoShian90s",
+    github: "https://github.com/eggyShrimp",
+    avatar: avatarGraph.src,
   },
   title: "EggyShrimp's Writings", // title of the website
   description: "A blog about my life and experiences", // description of the website

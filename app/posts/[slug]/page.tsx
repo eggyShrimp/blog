@@ -25,7 +25,10 @@ export default async function LanguagePost({ params }: PageProps) {
   const compiled = await compile(post.content, {
     outputFormat: "function-body",  // for ssr rendering
     rehypePlugins: [rehypePrismPlus],
-    remarkPlugins: [remarkGfm, remarkToc],
+    remarkPlugins: [
+      remarkGfm,
+      [remarkToc, { tight: true }]
+    ],
     baseUrl: import.meta.url,
   });
 

@@ -66,22 +66,24 @@ export default function RootLayout({ children }) {
       <body
         className={`antialiased`}
       >
-        <header className={styles.header}>
-          <span className={styles['header__logo']}>🐱</span>
-          <Link
-            href="/"
-            className={classnames(styles['header__btn'], styles['header__archive'])}
-          >
-            Home
-          </Link>
-          <Link
-            href="/about-me"
-            className={classnames(styles['header__btn'], styles['header__about'])}
-          >
-            About Me
-          </Link>
+        <header className='mx-auto prose prose-neutral prose-base flex gap-4 py-4'>
+          <span className='text-2xl font-bold'>🐱</span>
+          <nav className='flex items-center gap-4'>
+            <Link
+              href="/"
+              className="flex items-center gap-1 no-underline transition-colors duration-200 hover:text-blue-700"
+            >
+              <span>Home</span>
+            </Link>
+            <Link
+              href="/about-me"
+              className="flex items-center gap-1 no-underline transition-colors duration-200 hover:text-blue-700"
+            >
+              <span>About Me</span>
+            </Link>
+          </nav>
         </header>
-        <div className={styles.content}>
+        <div className='prose prose-neutral prose-base break-all mx-auto'>
           {children}
         </div>
         <SpeedInsights />

@@ -7,9 +7,10 @@ export type Language = "en" | "zh-CN";
 export type Metadata = {
   title: string;
   summary: string;
-  publishDate: string; // ISO string
+  date: string; // ISO string
   lang: Language;
   series?: string;
+  tag?: string[];
 };
 
 export type BlogPost = {
@@ -64,16 +65,17 @@ function parseFrontMatter(raw: string): {
   const result: Partial<Metadata> = {
     title: metadata.title,
     summary: metadata.summary,
-    publishDate: metadata.publishDate,
+    date: metadata.date,
     series: metadata.series,
+    tag: JSON.parse(metadata.tag ?? "[]") as string[],
   };
 
   if (metadata.lang === "en" || metadata.lang === "zh-CN") {
     result.lang = metadata.lang;
   }
 
-  if (metadata.publishDate) {
-    result.publishDate = parseDate(metadata.publishDate);
+  if (metadata.date) {
+    result.date = parseDate(metadata.date);
   }
 
   return { metadata: result, content };
@@ -138,7 +140,8 @@ export const getAllBlogPosts = (): BlogPost[] => {
       const metadata: Metadata = {
         title: metaPartial.title!,
         summary: metaPartial.summary!,
-        publishDate: metaPartial.publishDate!, // already ISO
+        date: metaPartial.date!, // already ISO
+        tag: metaPartial.tag,
         lang,
         ...(metaPartial.series ? { series: metaPartial.series } : {}),
       };
@@ -151,7 +154,7 @@ export const getAllBlogPosts = (): BlogPost[] => {
     })
     // newest first by publishDate
     .sort((a, b) =>
-      a.metadata.publishDate < b.metadata.publishDate ? 1 : -1,
+      a.metadata.date < b.metadata.date ? 1 : -1,
     );
 
   cache = { posts, dirMtimeMs };
@@ -168,6 +171,11 @@ export function getBlogPost(
     all.find(p => p.slug === slug && p.metadata.lang === lang) ??
     all.find(p => p.slug === slug)
   );
+}
+
+export function getBlogPostsByTag(tag: string): BlogPost[] {
+  const all = getAllBlogPosts();
+  return all.filter(p => p.metadata.tag?.includes(tag));
 }
 
 export function getAvailableLanguages(slug: string): Language[] {
