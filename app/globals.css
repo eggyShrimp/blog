@@ -1,9 +1,9 @@
 @import "tailwindcss";
+@import "./prism.css";
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 @plugin "@tailwindcss/typography";
-
 @theme {
   --content-width: 648px;
 }

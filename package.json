@@ -16,9 +16,11 @@
     "next": "16.0.1",
     "react": "19.2.0",
     "react-dom": "19.2.0",
+    "rehype-prism-plus": "^2.0.1",
     "remark-frontmatter": "^5.0.0",
     "remark-gfm": "^4.0.1",
     "remark-mdx-frontmatter": "^5.2.0",
+    "remark-toc": "^9.0.0",
     "sass": "^1.94.1"
   },
   "devDependencies": {

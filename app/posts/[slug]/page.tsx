@@ -5,6 +5,9 @@ import * as runtime from "react/jsx-runtime";
 import { Metadata } from "next";
 import { Language } from "@/lib/core";
 import remarkGfm from "remark-gfm";
+import remarkToc from "remark-toc";
+import rehypePrismPlus from 'rehype-prism-plus';
+import MDXComponents from "@/components";
 
 interface PageProps {
   params: Promise<{ lang: Language; slug: string }>;
@@ -21,8 +24,8 @@ export default async function LanguagePost({ params }: PageProps) {
   // Compile and render MDX content
   const compiled = await compile(post.content, {
     outputFormat: "function-body",  // for ssr rendering
-    rehypePlugins: [],
-    remarkPlugins: [remarkGfm],
+    rehypePlugins: [rehypePrismPlus],
+    remarkPlugins: [remarkGfm, remarkToc],
     baseUrl: import.meta.url,
   });
 
@@ -34,7 +37,7 @@ export default async function LanguagePost({ params }: PageProps) {
   });
 
   // TODO: Add MDX components to extend the default components
-  return <MDXContent />;
+  return <MDXContent components={MDXComponents} />;
 }
 
 export async function generateStaticParams() {
