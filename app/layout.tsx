@@ -1,3 +1,4 @@
+import { SpeedInsights } from '@vercel/speed-insights/next';
 import "./globals.css";
 import styles from "./index.module.scss";
 import classnames from "classnames";
@@ -83,6 +84,7 @@ export default function RootLayout({ children }) {
         <div className={styles.content}>
           {children}
         </div>
+        <SpeedInsights />
       </body>
     </html>
   );
