@@ -11,11 +11,11 @@ Each post entry in the list SHALL be rendered as a plain `<Link>` text row witho
 - **THEN** each entry is a block-level `<Link>` with no `bg-white`, no `rounded-lg`, no `shadow`, no `overflow-hidden`
 
 ### Requirement: Date column in Courier Prime
-Each post entry SHALL display the publish date inline with the title, separated by an em-dash, on the same row.
+Each post entry SHALL display the publish date in Courier Prime with `font-variant-numeric: tabular-nums`, ensuring equal digit width for aligned titles.
 
-#### Scenario: Date displayed inline
-- **WHEN** a post with date "2024-01-24" is listed
-- **THEN** the entry shows "2024-01-24 — {title}" on the same line
+#### Scenario: Date column alignment
+- **WHEN** multiple post entries are listed with different dates
+- **THEN** all dates render with equal-width digits, so title text starts at a consistent horizontal position
 
 ### Requirement: Title as link
 The post title SHALL be a clickable link in accent green, styled as a block heading.
@@ -32,11 +32,15 @@ Post summaries SHALL NOT be displayed in the home page post list. The summary fi
 - **THEN** the home page entry does not render the summary text
 
 ### Requirement: Tags displayed inline after title
-Post tags SHALL NOT be displayed in the home page post list. Tags remain visible on post pages and /tags pages.
+Post tags SHALL be displayed on the home page as clickable `<Link>` elements navigating to `/tags/{tag}`. Each tag uses Courier Prime, muted color, `text-xs`, with hover underline and accent-hover color.
 
-#### Scenario: Tags suppressed
+#### Scenario: Tags displayed as links
 - **WHEN** a post has tags ["JavaScript", "Design Pattern"]
-- **THEN** the home page entry does not display tags
+- **THEN** the entry shows "#JavaScript #Design Pattern" as clickable links to `/tags/JavaScript` and `/tags/Design Pattern`
+
+#### Scenario: No tags
+- **WHEN** a post has no tags or an empty tag array
+- **THEN** no tag row is rendered
 
 ### Requirement: Horizontal rule separator between entries
 Post entries SHALL be separated by a warm-colored `<hr>` element, not by card gaps.

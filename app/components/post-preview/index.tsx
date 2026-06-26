@@ -16,7 +16,7 @@ export default function PostPreviewCard({ post }: { post: BlogPost }) {
         className="block no-underline py-1.5 hover:bg-[var(--color-surface-hover)] -mx-4 px-4 group"
       >
         <div className="flex flex-wrap items-baseline gap-x-2 gap-y-0.5">
-          <span className="font-courier text-sm whitespace-nowrap" style={{ color: 'var(--color-muted)' }}>
+          <span className="font-courier text-sm whitespace-nowrap tabular-nums" style={{ color: 'var(--color-muted)' }}>
             {dateLabel}
           </span>
           <span className="font-courier text-sm mx-0.5" style={{ color: 'var(--color-muted)' }}>—</span>
@@ -27,9 +27,14 @@ export default function PostPreviewCard({ post }: { post: BlogPost }) {
         {post.metadata.tag && post.metadata.tag.length > 0 && (
           <div className="flex flex-wrap gap-x-3 gap-y-0.5 mt-0.5">
             {post.metadata.tag.map((t: string) => (
-              <span key={t} className="font-courier text-xs" style={{ color: 'var(--color-muted)' }}>
+              <Link
+                key={t}
+                href={`/tags/${t}`}
+                className="font-courier text-xs no-underline hover:underline"
+                style={{ color: 'var(--color-muted)' }}
+              >
                 #{t}
-              </span>
+              </Link>
             ))}
           </div>
         )}
