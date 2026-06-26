@@ -11,19 +11,21 @@ export default function PostPreviewCard({ post }: { post: BlogPost }) {
 
   return (
     <div>
-      <Link
-        href={`/posts/${post.slug}`}
-        className="block no-underline py-1.5 hover:bg-[var(--color-surface-hover)] -mx-4 px-4 group"
-      >
-        <div className="flex flex-wrap items-baseline gap-x-2 gap-y-0.5">
-          <span className="font-courier text-sm whitespace-nowrap tabular-nums" style={{ color: 'var(--color-muted)' }}>
-            {dateLabel}
-          </span>
-          <span className="font-courier text-sm mx-0.5" style={{ color: 'var(--color-muted)' }}>—</span>
-          <span className="text-base" style={{ color: 'var(--color-accent)' }}>
-            {post.metadata.title}
-          </span>
-        </div>
+      <div className="py-1.5 -mx-4 px-4 hover:bg-[var(--color-surface-hover)]">
+        <Link
+          href={`/posts/${post.slug}`}
+          className="block no-underline"
+        >
+          <div className="flex flex-wrap items-baseline gap-x-2 gap-y-0.5">
+            <span className="font-courier text-sm whitespace-nowrap tabular-nums" style={{ color: 'var(--color-muted)' }}>
+              {dateLabel}
+            </span>
+            <span className="font-courier text-sm mx-0.5" style={{ color: 'var(--color-muted)' }}>—</span>
+            <span className="text-base" style={{ color: 'var(--color-accent)' }}>
+              {post.metadata.title}
+            </span>
+          </div>
+        </Link>
         {post.metadata.tag && post.metadata.tag.length > 0 && (
           <div className="flex flex-wrap gap-x-3 gap-y-0.5 mt-0.5">
             {post.metadata.tag.map((t: string) => (
@@ -38,7 +40,7 @@ export default function PostPreviewCard({ post }: { post: BlogPost }) {
             ))}
           </div>
         )}
-      </Link>
+      </div>
       <hr style={{ borderColor: 'var(--color-line)', margin: 0 }} />
     </div>
   );
