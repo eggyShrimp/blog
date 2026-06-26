@@ -192,7 +192,7 @@ export type Heading = {
   slug: string;
 };
 
-function headingSlug(text: string): string {
+export function headingSlug(text: string): string {
   return text
     .toLowerCase()
     .replace(/[^\p{L}\p{N}\s-]/gu, "")

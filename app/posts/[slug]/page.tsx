@@ -1,5 +1,5 @@
 import metadata from "@/data/metadata";
-import { getBlogPost, getAllBlogPosts } from "@/lib/core";
+import { getBlogPost, getAllBlogPosts, headingSlug } from "@/lib/core";
 import { compile, run } from "@mdx-js/mdx";
 import * as runtime from "react/jsx-runtime";
 import { Metadata } from "next";
@@ -24,6 +24,18 @@ function remarkRemoveTocHeading() {
   };
 }
 
+function rehypeAddHeadingIds() {
+  return (tree: { children: { tagName?: string; children?: { value?: string }[]; properties?: Record<string, unknown> }[] }) => {
+    for (const node of tree.children) {
+      if (node.tagName === "h2" || node.tagName === "h3") {
+        const text = node.children?.map((c) => c.value ?? "").join("") ?? "";
+        if (!node.properties) node.properties = {};
+        node.properties.id = headingSlug(text);
+      }
+    }
+  };
+}
+
 interface PageProps {
   params: Promise<{ lang: Language; slug: string }>;
 }
@@ -39,7 +51,7 @@ export default async function LanguagePost({ params }: PageProps) {
   // Compile and render MDX content
   const compiled = await compile(post.content, {
     outputFormat: "function-body",  // for ssr rendering
-    rehypePlugins: [rehypePrismPlus],
+    rehypePlugins: [rehypeAddHeadingIds, rehypePrismPlus],
     remarkPlugins: [
       remarkGfm,
       remarkRemoveTocHeading,
