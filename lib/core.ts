@@ -166,7 +166,6 @@ export function getBlogPost(
   lang: Language = "en",
 ): BlogPost | undefined {
   const all = getAllBlogPosts();
-  console.log(all);
   return (
     all.find(p => p.slug === slug && p.metadata.lang === lang) ??
     all.find(p => p.slug === slug)

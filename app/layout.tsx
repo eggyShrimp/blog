@@ -1,32 +1,21 @@
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import "./globals.css";
-import styles from "./index.module.scss";
-import classnames from "classnames";
 import Link from "next/link";
 import {
-  Lato,
+  Courier_Prime,
   Fira_Sans,
-  Noto_Sans_SC,
   JetBrains_Mono,
 } from "next/font/google";
 
-const lato = Lato({
-  weight: ["300", "400", "700", "900"],
-  subsets: ["latin"],
-  variable: "--font-lato",
-  display: "swap",
-  adjustFontFallback: false,
-});
-
-const noto_sans_sc = Noto_Sans_SC({
+const courier = Courier_Prime({
   weight: ["400", "700"],
+  subsets: ["latin"],
+  variable: "--font-courier",
   display: "swap",
-  variable: "--font-notosans",
-  preload: false,
 });
 
 const fira = Fira_Sans({
-  weight: ["100", "400", "700"],
+  weight: ["400", "700"],
   subsets: ["latin"],
   display: "swap",
   variable: "--font-fira",
@@ -39,14 +28,7 @@ const jetbrains_mono = JetBrains_Mono({
   variable: "--font-jetbrains",
 });
 
-const fonts = [
-  { name: "lato", variable: lato.variable },
-  { name: "notoSansSC", variable: noto_sans_sc.variable },
-  { name: "fira", variable: fira.variable },
-  { name: "jetbrainsMono", variable: jetbrains_mono.variable },
-];
-
-const fontVariables = fonts.map(f => f.variable).join(" ");
+const fontVariables = [courier.variable, fira.variable, jetbrains_mono.variable].join(" ");
 
 export const metadata = {
   title: "EggyShrimp's Writings",
@@ -56,34 +38,42 @@ export const metadata = {
 export const viewport = {
   width: 'device-width',
   initialScale: 1,
-  maximumScale: 1,
-  userScalable: false,
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={fontVariables}>
-      <body
-        className={`antialiased`}
-      >
-        <header className='mx-auto prose prose-neutral prose-base flex gap-4 py-4'>
-          <span className='text-2xl font-bold'>🐱</span>
-          <nav className='flex items-center gap-4'>
+      <body className="antialiased">
+        <a href="#main" className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:bg-[var(--color-paper)] focus:px-4 focus:py-2 focus:text-[var(--color-accent)] focus:shadow focus:outline-dashed">
+          Skip to content
+        </a>
+        <header className='mx-auto max-w-[65ch] flex justify-between items-end py-6 border-b mb-8 px-0' style={{ borderColor: 'var(--color-line)' }}>
+          <Link
+            href="/"
+            className="font-courier text-2xl font-bold no-underline"
+            style={{ color: 'var(--color-accent)' }}
+          >
+            Eggy Shrimp
+          </Link>
+          <nav className='flex items-center gap-0'>
             <Link
               href="/"
-              className="flex items-center gap-1 no-underline transition-colors duration-200 hover:text-blue-700"
+              className="font-courier text-sm no-underline hover:underline py-2 pr-2"
+              style={{ color: 'var(--color-muted)' }}
             >
-              <span>Home</span>
+              Home
             </Link>
+            <span className="font-courier text-sm px-1" style={{ color: 'var(--color-muted)' }}>·</span>
             <Link
               href="/about-me"
-              className="flex items-center gap-1 no-underline transition-colors duration-200 hover:text-blue-700"
+              className="font-courier text-sm no-underline hover:underline py-2 pl-2"
+              style={{ color: 'var(--color-muted)' }}
             >
-              <span>About Me</span>
+              About Me
             </Link>
           </nav>
         </header>
-        <div className='prose prose-neutral prose-base break-all mx-auto'>
+        <div id="main" className='prose prose-neutral prose-base break-words mx-auto'>
           {children}
         </div>
         <SpeedInsights />

@@ -3,26 +3,38 @@ import Link from "next/link";
 
 export default function PostPreviewCard({ post }: { post: BlogPost }) {
   const publishDate = new Date(post.metadata.date);
-  const dateLabel = publishDate.toISOString().slice(0, 10);
+  const dateLabel = new Intl.DateTimeFormat("en-CA", {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  }).format(publishDate);
 
   return (
-    <Link
-      className="relative block overflow-hidden rounded-lg p-4 bg-white transition-colors hover:bg-slate-50 group no-underline"
-      href={`/posts/${post.slug}`}
-    >
-      <span
-        aria-hidden
-        className="pointer-events-none select-none absolute inset-0 flex items-end justify-end pr-2 pb-1 text-5xl font-black tracking-tight text-slate-100 transition-colors duration-200 group-hover:text-white"
-        style={{ borderRadius: 'inherit' }}
+    <div>
+      <Link
+        href={`/posts/${post.slug}`}
+        className="block no-underline py-1.5 hover:bg-[var(--color-surface-hover)] -mx-4 px-4 group"
       >
-        {dateLabel}
-      </span>
-      <h2 className="text-xl font-bold mb-2 mt-0 transition-colors duration-200 group-hover:text-blue-700">
-        {post.metadata.title}
-      </h2>
-      <p className="text-gray-600 transition-colors duration-200 group-hover:text-gray-900">
-        {post.metadata.summary}
-      </p>
-    </Link>
+        <div className="flex flex-wrap items-baseline gap-x-2 gap-y-0.5">
+          <span className="font-courier text-sm whitespace-nowrap" style={{ color: 'var(--color-muted)' }}>
+            {dateLabel}
+          </span>
+          <span className="font-courier text-sm mx-0.5" style={{ color: 'var(--color-muted)' }}>—</span>
+          <span className="text-base" style={{ color: 'var(--color-accent)' }}>
+            {post.metadata.title}
+          </span>
+        </div>
+        {post.metadata.tag && post.metadata.tag.length > 0 && (
+          <div className="flex flex-wrap gap-x-3 gap-y-0.5 mt-0.5">
+            {post.metadata.tag.map((t: string) => (
+              <span key={t} className="font-courier text-xs" style={{ color: 'var(--color-muted)' }}>
+                #{t}
+              </span>
+            ))}
+          </div>
+        )}
+      </Link>
+      <hr style={{ borderColor: 'var(--color-line)', margin: 0 }} />
+    </div>
   );
 }

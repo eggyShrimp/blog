@@ -1,5 +1,3 @@
-import avatarGraph from "@/app/opengraph-image.jpg";
-
 const metadata = {
   author: {
     name: "Eggy Shrimp",
@@ -7,14 +5,13 @@ const metadata = {
     url: "https://eggyshrimp.github.io",
     twitter: "https://x.com/MoShian90s",
     github: "https://github.com/eggyShrimp",
-    avatar: avatarGraph.src,
+    avatar: "/avatar.jpg",
   },
-  title: "EggyShrimp's Writings", // title of the website
-  description: "A blog about my life and experiences", // description of the website
+  title: "EggyShrimp's Writings",
+  description: "A blog about my life and experiences",
   pages: [
     { name: "Home", url: "/" },
-    { name: "Archive", url: "/archive" },
-    { name: "About Me", url: "/about" },
+    { name: "About Me", url: "/about-me" },
   ],
 };
 

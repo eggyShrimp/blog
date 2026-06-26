@@ -11,18 +11,49 @@
 :root {
   --content-width: 95vw;
 
-  --color-text-primary: #2E2E2E;
-  --color-text-secondary: #666666;
+  --color-paper:        #f9f6f0;
+  --color-ink:          #2c241b;
+  --color-muted:        #8b7e6b;
+  --color-accent:       #1a6b4a;
+  --color-accent-hover: #0f4d33;
+  --color-line:         #e5dfd3;
+  --color-surface-hover:#f3efe8;
+}
+
+*, *::before, *::after {
+  border-radius: 0 !important;
+}
+
+body {
+  background-color: var(--color-paper);
+}
+
+@layer base {
+  h1 {
+    font-size: clamp(2rem, 5vw + 1rem, 3rem);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-fira), "PingFang SC", "Microsoft YaHei", sans-serif;
+  }
+
+  article h2 { font-size: 1.5rem; }
+  article h3 { font-size: 1.25rem; }
+
+  body {
+    font-kerning: normal;
+    font-optical-sizing: auto;
+  }
+
+  code {
+    font-variant-ligatures: none;
+  }
 }
 
 @media screen and (min-width: 640px) {
-  :root {
-    --content-width: 95vw;
-  }
+  :root { --content-width: 95vw; }
 }
 
 @media screen and (min-width: 1024px) {
-  :root {
-    --content-width: 768px;
-  }
+  :root { --content-width: 768px; }
 }
