@@ -82,9 +82,6 @@ export default function RootLayout({ children }) {
               </Link>
             </nav>
           </div>
-          <p className="text-center font-courier text-sm mt-4 -mb-2" style={{ color: 'var(--color-line)' }}>
-            * * *
-          </p>
         </header>
         <div id="main" className='prose prose-neutral prose-base break-words mx-auto'>
           {children}
