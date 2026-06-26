@@ -17,7 +17,7 @@ export default function PostPreviewCard({ post }: { post: BlogPost }) {
 
   return (
     <div>
-      <div className="py-1.5 -mx-4 px-4 hover:bg-[var(--color-surface-hover)]">
+      <div className="py-1.5 -mx-4 px-4 hover:bg-[var(--color-surface-hover)] flex flex-col justify-center" style={{ minHeight: '3.25rem' }}>
         <Link
           href={`/posts/${post.slug}`}
           className="block no-underline"
