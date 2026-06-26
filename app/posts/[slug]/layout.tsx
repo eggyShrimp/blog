@@ -1,20 +1,37 @@
-import { BlogPost, getBlogPost, Metadata } from "@/lib/core";
+import { getBlogPost, Metadata, extractHeadings, Heading } from "@/lib/core";
 import metadata from "@/data/metadata";
 import Image from "next/image";
 import Link from "next/link";
+import TOCSidebar from "@/app/components/toc-sidebar";
 
 export default async function PostLayout({ children, params }: { children: React.ReactNode, params: Promise<{ slug: string, lang?: string }> }) {
   const { slug } = await params;
   const post = getBlogPost(slug);
+  const headings: Heading[] = post?.content ? extractHeadings(post.content) : [];
 
-  return (<>
-    <PostMetaInfo metadata={post?.metadata} />
-    <article className='prose prose-neutral mt-[16px] prose-base break-words'>
-      {children}
-    </article>
-    <hr className="mt-16 mb-12 mx-auto" style={{ borderColor: 'var(--color-line)', maxWidth: '3rem' }} />
-    <AuthorCard />
-  </>);
+  return (
+    <div className="lg:flex lg:justify-center lg:gap-12">
+      <div className="flex-1 min-w-0">
+        <PostMetaInfo metadata={post?.metadata} />
+
+        <div className="lg:hidden">
+          <TOCSidebar headings={headings} />
+        </div>
+
+        <article className='prose prose-neutral mt-[16px] prose-base break-words'>
+          {children}
+        </article>
+        <hr className="mt-16 mb-12 mx-auto" style={{ borderColor: 'var(--color-line)', maxWidth: '3rem' }} />
+        <AuthorCard />
+      </div>
+
+      <aside className="hidden lg:block w-[220px] shrink-0">
+        <div className="sticky" style={{ top: 'var(--header-height)' }}>
+          <TOCSidebar headings={headings} />
+        </div>
+      </aside>
+    </div>
+  );
 }
 
 export function AuthorCard() {

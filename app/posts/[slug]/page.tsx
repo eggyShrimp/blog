@@ -5,9 +5,24 @@ import * as runtime from "react/jsx-runtime";
 import { Metadata } from "next";
 import { Language } from "@/lib/core";
 import remarkGfm from "remark-gfm";
-import remarkToc from "remark-toc";
 import rehypePrismPlus from 'rehype-prism-plus';
 import MDXComponents from "@/components";
+
+function remarkRemoveTocHeading() {
+  return (tree: { children: { type: string; children?: { value: string }[] }[] }) => {
+    tree.children = tree.children.filter((node) => {
+      if (node.type === "heading" && node.children?.length) {
+        const text = node.children
+          .map((c) => c.value)
+          .join("")
+          .trim()
+          .toLowerCase();
+        return text !== "toc";
+      }
+      return true;
+    });
+  };
+}
 
 interface PageProps {
   params: Promise<{ lang: Language; slug: string }>;
@@ -27,7 +42,7 @@ export default async function LanguagePost({ params }: PageProps) {
     rehypePlugins: [rehypePrismPlus],
     remarkPlugins: [
       remarkGfm,
-      [remarkToc, { tight: true }]
+      remarkRemoveTocHeading,
     ],
     baseUrl: import.meta.url,
   });

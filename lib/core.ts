@@ -185,3 +185,32 @@ export function getAvailableLanguages(slug: string): Language[] {
   }
   return [...langs];
 }
+
+export type Heading = {
+  level: number;
+  text: string;
+  slug: string;
+};
+
+function headingSlug(text: string): string {
+  return text
+    .toLowerCase()
+    .replace(/[^\p{L}\p{N}\s-]/gu, "")
+    .trim()
+    .replace(/\s+/g, "-");
+}
+
+export function extractHeadings(content: string): Heading[] {
+  const headings: Heading[] = [];
+  const lines = content.split("\n");
+  for (const line of lines) {
+    const m = /^(#{2,3})\s+(.+)/.exec(line);
+    if (!m) continue;
+    const level = m[1].length;
+    const text = m[2].trim();
+    if (/^toc$/i.test(text)) continue;
+    const slug = headingSlug(text);
+    headings.push({ level, text, slug });
+  }
+  return headings;
+}

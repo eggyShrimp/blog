@@ -24,7 +24,7 @@ No gradients. No decorative color. Hover states use `blue-700` for links, `slate
 | Role | Font | Weight | Size | Line Height | Notes |
 |------|------|--------|------|-------------|-------|
 | Title / H1 | Lato | 700 | clamp scale | 1.2 | Display headings |
-| Body | Fira Sans | 400 | base | 1.7 | Articles, navigation |
+| Body | Fira Sans | 400 | base | 1.65 | Articles, navigation |
 | Chinese fallback | Noto Sans SC | 400 | — | — | Fira Sans + Noto Sans SC stack |
 | Code | JetBrains Mono | 400 | 0.9em | 1.5 | Inline code, code blocks |
 
@@ -42,17 +42,20 @@ No gradients. No decorative color. Hover states use `blue-700` for links, `slate
 | Author Card | Avatar + name + social links | `border-slate-100`, `shadow-sm`, `backdrop-blur-sm` |
 | Callout | Info box with icon + title | `border-slate-200`, `bg-gradient-to-br from-slate-50` |
 | Tag | `#tag` label | `bg-slate-100`, `font-mono`, `text-xs` |
+| TOC Sidebar | Table of contents navigation | Desktop: sticky sidebar 220px; Mobile: inline block. Active heading highlighted via accent color. Small muted text, no decoration. |
 
 Components are minimal. No animated transitions beyond `transition-colors duration-200`. No decorative borders, shadows are barely perceptible.
 
 ## Layout
 
-- Single-column layout, centered, max-width 768px
+- Single-column layout on mobile, centered, max-width 95vw
+- Desktop post page: two-column — article (65ch) + TOC sidebar (220px), max-width 864px
+- Non-post pages: single-column, centered, max-width 864px
 - Header: full-width, centered content, `py-4`
-- Content: `prose prose-neutral prose-base mx-auto`
+- Content: `prose prose-neutral prose-base` on article content
 - Spacing: consistent `gap-4` for nav, `gap-2` for metadata, `my-16` for author card
-- No sidebar, no grid, no multi-column content
-- Mobile-first: `95vw` on small screens, `768px` on `≥1024px`
+- Mobile TOC: inline block between title and article body
+- Desktop TOC: sticky sidebar, IntersectionObserver for active heading tracking
 
 ## Motion
 

@@ -10,6 +10,7 @@
 
 :root {
   --content-width: 95vw;
+  --header-height: 5rem;
 
   --color-paper:        #f9f6f0;
   --color-ink:          #2c241b;
@@ -50,10 +51,29 @@ body {
   }
 }
 
+@layer components {
+  .prose {
+    line-height: 1.65;
+  }
+
+  .prose p {
+    margin-top: 1em;
+    margin-bottom: 1em;
+  }
+
+  .prose h2 {
+    margin-top: 1.6em;
+  }
+
+  .prose h3 {
+    margin-top: 1.4em;
+  }
+}
+
 @media screen and (min-width: 640px) {
   :root { --content-width: 95vw; }
 }
 
 @media screen and (min-width: 1024px) {
-  :root { --content-width: 768px; }
+  :root { --content-width: 864px; }
 }

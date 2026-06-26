@@ -7,7 +7,7 @@ export default async function TagPage({ params }: { params: Promise<{ tag: strin
   const posts = getBlogPostsByTag(decodedTag);
 
   return (
-    <div>
+    <div className="prose prose-neutral prose-base max-w-none">
       <p className="font-courier text-base mb-4" style={{ color: 'var(--color-accent)' }}>
         $ tags / <span style={{ color: 'var(--color-ink)' }}>{decodedTag}</span>
       </p>
