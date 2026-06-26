@@ -5,6 +5,7 @@ import {
   Courier_Prime,
   Fira_Sans,
   JetBrains_Mono,
+  Libre_Baskerville,
 } from "next/font/google";
 
 const courier = Courier_Prime({
@@ -28,7 +29,14 @@ const jetbrains_mono = JetBrains_Mono({
   variable: "--font-jetbrains",
 });
 
-const fontVariables = [courier.variable, fira.variable, jetbrains_mono.variable].join(" ");
+const libre = Libre_Baskerville({
+  weight: ["700"],
+  subsets: ["latin"],
+  variable: "--font-libre",
+  display: "swap",
+});
+
+const fontVariables = [courier.variable, fira.variable, jetbrains_mono.variable, libre.variable].join(" ");
 
 export const metadata = {
   title: "EggyShrimp's Writings",
@@ -47,31 +55,36 @@ export default function RootLayout({ children }) {
         <a href="#main" className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:bg-[var(--color-paper)] focus:px-4 focus:py-2 focus:text-[var(--color-accent)] focus:shadow focus:outline-dashed">
           Skip to content
         </a>
-        <header className='mx-auto max-w-[65ch] flex justify-between items-end py-6 border-b mb-8 px-0' style={{ borderColor: 'var(--color-line)' }}>
-          <Link
-            href="/"
-            className="font-courier text-2xl font-bold no-underline"
-            style={{ color: 'var(--color-accent)' }}
-          >
-            Eggy Shrimp
-          </Link>
-          <nav className='flex items-center gap-0'>
+        <header className='mx-auto max-w-[65ch] py-6 mb-4 px-0'>
+          <div className='flex justify-between items-end'>
             <Link
               href="/"
-              className="font-courier text-sm no-underline hover:underline py-2 pr-2"
-              style={{ color: 'var(--color-muted)' }}
+              className="text-2xl font-bold no-underline"
+              style={{ color: 'var(--color-accent)', fontFamily: 'var(--font-libre), "Songti SC", serif' }}
             >
-              Home
+              Eggy Shrimp
             </Link>
-            <span className="font-courier text-sm px-1" style={{ color: 'var(--color-muted)' }}>·</span>
-            <Link
-              href="/about-me"
-              className="font-courier text-sm no-underline hover:underline py-2 pl-2"
-              style={{ color: 'var(--color-muted)' }}
-            >
-              About Me
-            </Link>
-          </nav>
+            <nav className='flex items-center gap-0'>
+              <Link
+                href="/"
+                className="font-courier text-sm no-underline hover:underline py-2 pr-2"
+                style={{ color: 'var(--color-muted)' }}
+              >
+                Home
+              </Link>
+              <span className="font-courier text-sm px-1" style={{ color: 'var(--color-muted)' }}>·</span>
+              <Link
+                href="/about-me"
+                className="font-courier text-sm no-underline hover:underline py-2 pl-2"
+                style={{ color: 'var(--color-muted)' }}
+              >
+                About Me
+              </Link>
+            </nav>
+          </div>
+          <p className="text-center font-courier text-sm mt-4 -mb-2" style={{ color: 'var(--color-line)' }}>
+            * * *
+          </p>
         </header>
         <div id="main" className='prose prose-neutral prose-base break-words mx-auto'>
           {children}

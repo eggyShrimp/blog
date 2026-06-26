@@ -12,6 +12,12 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
+        serif: [
+          "var(--font-libre)",
+          "Songti SC",
+          "SimSun",
+          "serif",
+        ],
         courier: [
           "var(--font-courier)",
           "Songti SC",
