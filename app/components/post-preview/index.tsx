@@ -17,54 +17,45 @@ export default function PostPreviewCard({ post }: { post: BlogPost }) {
 
   return (
     <div>
-      <div className="py-1.5 -mx-4 px-4 hover:bg-[var(--color-surface-hover)] flex flex-col justify-center" style={{ minHeight: '3.25rem' }}>
+      <div
+        className="py-1.5 -mx-4 px-4 hover:bg-[var(--color-surface-hover)] flex flex-col"
+        style={{ height: '3.375rem' }}
+      >
         <Link
           href={`/posts/${post.slug}`}
-          className="block no-underline"
+          className="block no-underline min-w-0"
         >
-          <div className="flex flex-wrap items-baseline gap-x-2 gap-y-0.5">
+          <div className="flex flex-nowrap items-baseline gap-x-2">
             <span className="font-courier text-sm whitespace-nowrap tabular-nums" style={{ color: 'var(--color-muted)' }}>
               {dateLabel}
             </span>
-            <span className="font-courier text-sm" style={{ color: 'var(--color-muted)' }}>—</span>
-            <span className="text-base" style={{ color: 'var(--color-accent)' }}>
+            <span className="font-courier text-sm whitespace-nowrap" style={{ color: 'var(--color-muted)' }}>—</span>
+            <span className="text-base truncate" style={{ color: 'var(--color-accent)' }}>
               {post.metadata.title}
             </span>
           </div>
         </Link>
-        {tags.length > 0 && (
-          <div className="flex flex-wrap items-center gap-x-3 gap-y-0.5 mt-0.5">
-            {visibleTags.map((t: string) => (
-              <Link
-                key={t}
-                href={`/tags/${t}`}
-                className="font-courier text-xs no-underline hover:underline"
-                style={{ color: 'var(--color-muted)' }}
-              >
-                #{t}
-              </Link>
-            ))}
-            {hiddenTags.length > 0 && (
-              <details className="inline-flex">
-                <summary className="font-courier text-xs cursor-pointer select-none" style={{ color: 'var(--color-muted)' }}>
-                  +{hiddenTags.length} more
-                </summary>
-                <span className="inline-flex gap-x-3 gap-y-0.5 flex-wrap ml-3">
-                  {hiddenTags.map((t: string) => (
-                    <Link
-                      key={t}
-                      href={`/tags/${t}`}
-                      className="font-courier text-xs no-underline hover:underline"
-                      style={{ color: 'var(--color-muted)' }}
-                    >
-                      #{t}
-                    </Link>
-                  ))}
-                </span>
-              </details>
-            )}
-          </div>
-        )}
+        <div className="flex flex-wrap items-center gap-x-3 mt-0.5" style={{ minHeight: '1rem' }}>
+          {visibleTags.map((t: string) => (
+            <Link
+              key={t}
+              href={`/tags/${t}`}
+              className="font-courier text-xs no-underline hover:underline whitespace-nowrap"
+              style={{ color: 'var(--color-muted)' }}
+            >
+              #{t}
+            </Link>
+          ))}
+          {hiddenTags.length > 0 && (
+            <Link
+              href={`/posts/${post.slug}`}
+              className="font-courier text-xs no-underline hover:underline whitespace-nowrap"
+              style={{ color: 'var(--color-muted)' }}
+            >
+              +{hiddenTags.length}
+            </Link>
+          )}
+        </div>
       </div>
       <hr style={{ borderColor: 'var(--color-line)', margin: 0 }} />
     </div>
