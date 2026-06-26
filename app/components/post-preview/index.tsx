@@ -35,7 +35,7 @@ export default function PostPreviewCard({ post }: { post: BlogPost }) {
             </span>
           </div>
         </Link>
-        <div className="flex flex-wrap items-center gap-x-3 mt-0.5" style={{ minHeight: '1rem' }}>
+        <div className="flex items-center gap-x-3 mt-0.5 overflow-hidden" style={{ minHeight: '1rem' }}>
           {visibleTags.map((t: string) => (
             <Link
               key={t}
