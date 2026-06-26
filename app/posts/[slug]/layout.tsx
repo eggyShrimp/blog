@@ -26,7 +26,7 @@ export default async function PostLayout({ children, params }: { children: React
       </div>
 
       <aside className="hidden lg:block w-[220px] shrink-0">
-        <div className="sticky" style={{ top: 'var(--header-height)' }}>
+        <div className="sticky top-4">
           <TOCSidebar headings={headings} />
         </div>
       </aside>

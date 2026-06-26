@@ -55,9 +55,9 @@ export default function RootLayout({ children }) {
         <a href="#main" className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:bg-[var(--color-paper)] focus:px-4 focus:py-2 focus:text-[var(--color-accent)] focus:shadow focus:outline-dashed">
           Skip to content
         </a>
-        <header className='sticky top-0 z-10 mx-auto px-0 bg-[var(--color-paper)]'
+        <header className='mx-auto py-6 mb-4 px-0'
           style={{ height: 'var(--header-height)', maxWidth: 'var(--content-width)' }}>
-          <div className='flex justify-between items-center h-full'>
+          <div className='flex justify-between items-end'>
             <Link
               href="/"
               className="text-2xl font-bold no-underline"
