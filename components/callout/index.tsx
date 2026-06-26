@@ -8,23 +8,23 @@ export type CalloutProps = {
 
 export default function Callout({ children, title, icon }: CalloutProps) {
   return (
-    <section className="border-dashed border p-6 my-6" style={{ borderColor: 'var(--color-line)', backgroundColor: 'var(--color-surface-hover)' }}>
+    <section className="border-l-4 p-5 my-5" style={{ borderLeftColor: 'var(--color-accent)', backgroundColor: 'var(--color-surface-hover)' }}>
       {icon && (
-        <div className="flex items-center gap-3 mb-3">
-          <span className="text-lg">{icon}</span>
+        <div className="flex items-baseline gap-2.5 mb-2.5">
+          <span className="text-lg leading-none">{icon}</span>
           {title && (
-            <h3 className="font-courier text-base font-bold m-0" style={{ color: 'var(--color-ink)' }}>
+            <h3 className="font-courier text-base font-bold leading-none" style={{ margin: 0, color: 'var(--color-ink)' }}>
               {title}
             </h3>
           )}
         </div>
       )}
       {!icon && title && (
-        <h3 className="font-courier text-base font-bold mt-0 mb-3" style={{ color: 'var(--color-ink)' }}>
+        <h3 className="font-courier text-base font-bold leading-none" style={{ marginTop: 0, marginBottom: '0.625rem', color: 'var(--color-ink)' }}>
           {title}
         </h3>
       )}
-      <div className="text-sm leading-relaxed" style={{ color: 'var(--color-ink)' }}>
+      <div className="text-sm leading-relaxed [&>:first-child]:mt-0 [&>:last-child]:mb-0" style={{ color: 'var(--color-ink)' }}>
         {children}
       </div>
     </section>
