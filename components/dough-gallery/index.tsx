@@ -57,23 +57,11 @@ export default function DoughGallery({ recipes }: DoughGalleryProps) {
                 transform: isSelected
                   ? "translateY(-0.5rem) rotate(2deg)"
                   : "translateY(0) rotate(0deg)",
-                border: "none",
+                border: "1px solid var(--color-line)",
                 transition: "all 0.25s cubic-bezier(0.4, 0, 0.2, 1)",
                 opacity: isSelected ? 1 : 0.65,
               }}
             >
-                {/* accent bar */}
-                <div
-                  className="absolute top-0 left-0 right-0"
-                  style={{
-                    height: "3px",
-                    background: isSelected
-                      ? "linear-gradient(90deg, #d4a574, #8b5e3c, #6b8f71)"
-                      : "linear-gradient(90deg, #d4cbbf, #c4b8a8)",
-                    transition: "background 0.25s ease",
-                  }}
-                />
-
                 <h4
                   className="text-lg font-bold mb-2 tracking-wide"
                   style={{
@@ -115,17 +103,9 @@ export default function DoughGallery({ recipes }: DoughGalleryProps) {
         className="p-6 relative transition-all duration-300"
         style={{
           background: "var(--color-paper)",
+          border: "1px solid var(--color-line)",
         }}
       >
-        {/* top accent */}
-        <div
-          className="absolute top-0 left-0 right-0"
-          style={{
-            height: "3px",
-            background: "linear-gradient(90deg, #d4a574, #8b5e3c, #6b8f71)",
-          }}
-        />
-
         <h3
           className="font-bold text-xl tracking-wide mt-2 mb-5"
           style={{ fontFamily: "var(--font-libre), serif", color: "#5c3d2e" }}
