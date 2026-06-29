@@ -5,6 +5,7 @@ import * as runtime from "react/jsx-runtime";
 import { Metadata } from "next";
 import { Language } from "@/lib/core";
 import remarkGfm from "remark-gfm";
+import remarkMermaid from "@/lib/remark-mermaid";
 import rehypePrismPlus from 'rehype-prism-plus';
 import MDXComponents from "@/components";
 
@@ -55,6 +56,7 @@ export default async function LanguagePost({ params }: PageProps) {
     remarkPlugins: [
       remarkGfm,
       remarkRemoveTocHeading,
+      remarkMermaid,
     ],
     baseUrl: import.meta.url,
   });

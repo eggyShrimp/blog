@@ -21,6 +21,12 @@ const eslintConfig = defineConfig([
       ],
     },
   },
+  {
+    files: ["lib/colors.ts"],
+    rules: {
+      "no-restricted-syntax": "off",
+    },
+  },
 ]);
 
 export default eslintConfig;

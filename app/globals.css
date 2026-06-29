@@ -88,7 +88,25 @@ body {
 
   .prose h3 {
     margin-top: 1.2em;
-    margin-bottom: 0.6em;
+  }
+
+  .mermaid-diagram {
+    display: flex;
+    justify-content: center;
+    margin-top: 1.5em;
+    margin-bottom: 1.5em;
+    overflow-x: auto;
+    min-height: 100px;
+  }
+
+  .mermaid-diagram svg {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .mermaid-diagram code {
+    white-space: pre-wrap;
+    word-break: break-all;
   }
 }
 

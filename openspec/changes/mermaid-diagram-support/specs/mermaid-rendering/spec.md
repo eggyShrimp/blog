@@ -1,6 +1,6 @@
 # Spec: Mermaid Rendering
 
-构建时将 MDX 中的 mermaid 代码块预渲染为静态 SVG。
+在浏览器中将 MDX 中的 mermaid 代码块渲染为 SVG 图示。
 
 ## 输入
 
@@ -14,23 +14,30 @@ graph TD
 ```
 ````
 
-## 行为
+## 编译时行为
 
-- **编译时转换**：在 `@mdx-js/mdx` 的 `compile()` 阶段，rehype 插件将 `<code class="language-mermaid">` 替换为包含内联 SVG 的 `<div class="mermaid-diagram">`
-- **主题**：SVG 使用 warm paper 配色，与博客整体视觉一致
-- **唯一 ID**：每个 mermaid 图分配唯一标识符（如 `mermaid-<counter>`），避免多图冲突
-- **降级**：若 mermaid 语法无效，保留原始 `<pre><code>` 块不做转换
+- remark 插件将 `{ type: "code", lang: "mermaid" }` 节点转换为 `mdxJsxFlowElement`，输出 `<Mermaid chart="..." />`
+- 编译后 HTML 中不包含原始 mermaid 代码文本和 `<pre class="language-mermaid">`
+
+## 浏览器行为
+
+- 页面挂载时，`<Mermaid>` 组件动态 `import("mermaid")` 加载 mermaid 库
+- 加载完成后调用 `mermaid.render(id, chart)` 生成 SVG
+- 渲染前显示空占位（`min-height: 100px`），无布局跳动
+- 渲染失败时展示原始 `<pre><code>` 代码块
+
+## 主题
+
+- SVG 使用 warm paper 配色，通过 Mermaid 的 `themeVariables` 配置
+- 字体使用 Courier Prime + PingFang SC monospace 栈
 
 ## 桌面端
 
 - SVG 最大宽度为内容区宽度（`max-width: 100%`）
-- SVG 内文本使用 Courier Prime 等 monospace 字体
-- 如有标题/说明文字，通过 MDX 中的普通文本在图表前后书写
 
 ## 移动端
 
 - 图表容器 `overflow-x: auto`，复杂图表可横向滚动
-- 不缩放图表本身（保持可读性）
 
 ## 交互
 
@@ -39,5 +46,6 @@ graph TD
 
 ## 边界
 
-- 仅处理 `language-mermaid` class 的代码块，不处理其他图示语言
-- Mermaid 版本锁定主版本号，不自动升级
+- 仅处理 `lang: "mermaid"` 的代码块
+- JS 禁用时图区显示空占位，不降级展示原始代码
+- Mermaid 库通过动态 `import()` 按需加载，不影响无图页面
