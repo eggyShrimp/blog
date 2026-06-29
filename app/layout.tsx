@@ -7,6 +7,7 @@ import {
   JetBrains_Mono,
   Libre_Baskerville,
 } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next"
 
 const courier = Courier_Prime({
   weight: ["400", "700"],
@@ -88,6 +89,7 @@ export default function RootLayout({ children }) {
           {children}
         </div>
         <SpeedInsights />
+        <Analytics />
       </body>
     </html>
   );

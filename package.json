@@ -11,6 +11,7 @@
   "dependencies": {
     "@mdx-js/loader": "^3.1.1",
     "@next/mdx": "^16.0.1",
+    "@vercel/analytics": "^2.0.1",
     "@vercel/speed-insights": "^1.2.0",
     "classnames": "^2.5.1",
     "mermaid": "^11.16.0",
