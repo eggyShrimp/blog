@@ -25,10 +25,10 @@ module.exports = {
           "monospace",
         ],
         sans: [
-          "var(--font-fira)",
           "PingFang SC",
           "Hiragino Sans GB",
           "Microsoft YaHei",
+          "var(--font-fira)",
           ...defaultTheme.fontFamily.sans,
         ],
         mono: [
@@ -48,7 +48,7 @@ module.exports = {
       typography: theme => ({
         DEFAULT: {
           css: {
-            maxWidth: "65ch",
+            maxWidth: "42em",
             "code::before": { content: '""' },
             "code::after": { content: '""' },
             "h1, h2, h3, h4, h5, h6": {

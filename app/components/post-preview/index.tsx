@@ -57,7 +57,6 @@ export default function PostPreviewCard({ post }: { post: BlogPost }) {
           )}
         </div>
       </div>
-      <hr style={{ borderColor: 'var(--color-line)', margin: 0 }} />
     </div>
   );
 }

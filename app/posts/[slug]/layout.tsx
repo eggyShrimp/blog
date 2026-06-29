@@ -35,9 +35,13 @@ export default async function PostLayout({ children, params }: { children: React
 export function AuthorCard() {
   return (
     <div className="flex flex-col items-center my-16 gap-1">
-      <span className="font-courier text-lg font-bold" style={{ color: 'var(--color-ink)' }}>
+      <Link
+        href="/"
+        className="text-2xl font-bold no-underline"
+        style={{ color: 'var(--color-accent)', fontFamily: 'var(--font-libre), "Songti SC", serif' }}
+      >
         {metadata.author.name}
-      </span>
+      </Link>
       <div className="flex flex-row items-center gap-2">
         <a
           href={metadata.author.twitter}

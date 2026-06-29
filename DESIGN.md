@@ -23,13 +23,15 @@ No gradients. No decorative color. Hover states use `blue-700` for links, `slate
 
 | Role | Font | Weight | Size | Line Height | Notes |
 |------|------|--------|------|-------------|-------|
-| Title / H1 | Lato | 700 | clamp scale | 1.2 | Display headings |
-| Body | Fira Sans | 400 | base | 1.65 | Articles, navigation |
-| Chinese fallback | Noto Sans SC | 400 | — | — | Fira Sans + Noto Sans SC stack |
+| Title / H1 | Fira Sans + PingFang SC | 700 | clamp scale | 1.2 | Display headings |
+| Body | PingFang SC + Fira Sans | 400 | base | 1.6 | Articles, navigation; 中文优先 |
 | Code | JetBrains Mono | 400 | 0.9em | 1.5 | Inline code, code blocks |
 
+- 中文排版优先：正文 `text-align: justify`，`line-break: strict`（标点禁则）
+- 中西文间距：CSS `text-spacing: trim-start trim-end trim-adjacent` + 构建时 `autocorrect` 自动修正
+- Body line length capped at ~42em（约 42 个中文字/行）
+- 段落间距：0.8em；H2 上距：1.3em；H3 上距：1.2em
 - `text-wrap: balance` on h1–h3
-- Body line length capped at ~65–75ch (enforced by `--content-width: 768px`)
 - `prose-neutral` from Tailwind Typography for article content
 - No decorative fonts, no display serifs, no script fonts
 
@@ -49,10 +51,10 @@ Components are minimal. No animated transitions beyond `transition-colors durati
 ## Layout
 
 - Single-column layout on mobile, centered, max-width 95vw
-- Desktop post page: two-column — article (65ch) + TOC sidebar (220px), max-width 864px
+- Desktop post page: two-column — article (42em) + TOC sidebar (220px), max-width 864px
 - Non-post pages: single-column, centered, max-width 864px
 - Header: full-width, centered content, `py-4`
-- Content: `prose prose-neutral prose-base` on article content
+- Content: `prose prose-neutral prose-base` on article content, 中文排版优化（两端对齐、标点禁则、中西文间距）
 - Spacing: consistent `gap-4` for nav, `gap-2` for metadata, `my-16` for author card
 - Mobile TOC: inline block between title and article body
 - Desktop TOC: sticky sidebar, IntersectionObserver for active heading tracking

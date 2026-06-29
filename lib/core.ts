@@ -1,5 +1,6 @@
 import fs from "fs";
 import path from "path";
+import { format as autocorrect } from "autocorrect-node";
 import blogConfig from "../blog.config.json";
 
 export type Language = "en" | "zh-CN";
@@ -129,7 +130,7 @@ export const getAllBlogPosts = (): BlogPost[] => {
     .filter(e => e.isFile() && e.name.endsWith(".mdx"))
     .map(e => e.name)
     .map(file => {
-      const raw = fs.readFileSync(path.join(dir, file), "utf-8");
+      const raw = autocorrect(fs.readFileSync(path.join(dir, file), "utf-8"));
       const { metadata: metaPartial, content } =
         parseFrontMatter(raw);
 

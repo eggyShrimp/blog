@@ -20,7 +20,6 @@
     "remark-frontmatter": "^5.0.0",
     "remark-gfm": "^4.0.1",
     "remark-mdx-frontmatter": "^5.2.0",
-
     "sass": "^1.94.1"
   },
   "devDependencies": {
@@ -28,6 +27,7 @@
     "@tailwindcss/typography": "^0.5.19",
     "@types/node": "24.10.1",
     "@types/react": "19.2.6",
+    "autocorrect-node": "^2.14.0",
     "babel-plugin-react-compiler": "1.0.0",
     "eslint": "^9",
     "eslint-config-next": "16.0.1",
